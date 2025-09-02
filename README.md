@@ -162,13 +162,3 @@ Please open issues for feature requests and pull requests against `develop`. Fol
 MIT
 
 ---
-
-## Next steps I can do for you (pick any and I will create them right away):
-
-1. Generate the complete `src/` skeleton (Python) with TODOs and docstrings.
-2. Create Dockerfile + CI workflow (GitHub Actions) to build and smoke-test.
-3. Produce a sample small test video (clip) and show the pipeline run locally (video not included in repo by default).
-
----
-
-*Created for you — let me know which follow-up you want and I will add the files directly into the repo.*
