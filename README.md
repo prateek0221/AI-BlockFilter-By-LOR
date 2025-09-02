@@ -81,78 +81,47 @@ python src/main.py --config config/cameras.json --rtsp rtsp://user:pass@cam-ip:5
 
 ---
 
-## cameras.json (example)
-
-```json
-{
-  "cameras": [
-    {
-      "id": "CAM_D18",
-      "name": "BackEntrance_D18",
-      "source": "file:examples/sample_videos/backdoor.mp4",
-      "model": "yolov8n-person.onnx",
-      "confidence_threshold": 0.35,
-      "min_duration_secs": 1.0,
-      "max_duration_secs": 30.0,
-      "lor": {
-        "type": "line",
-        "points": [[100, 400], [1000, 400]],
-        "direction": "either",
-        "trigger_on": "crossing"  
-      },
-      "storage": {
-        "path": "out/blocks/CAM_D18",
-        "compress_args": "-vcodec libx264 -preset veryfast -crf 28"
-      }
-    },
-    {
-      "id": "CAM_A1",
-      "name": "MainGate_A1",
-      "source": "rtsp://user:pass@192.168.1.20:554/stream1",
-      "model": "yolov8n-person.onnx",
-      "confidence_threshold": 0.45,
-      "min_duration_secs": 0.5,
-      "max_duration_secs": 60.0,
-      "lor": {
-        "type": "rect",
-        "points": [[200, 100], [800, 600]],
-        "trigger_on": "presence",
-        "dwell_secs": 2.0
-      },
-      "storage": {
-        "path": "out/blocks/CAM_A1",
-        "compress_args": "-vcodec libx264 -preset fast -crf 24"
-      }
-    }
-  ]
-}
-```
 
 > `lor.type` supports `line` (2 points), `rect` (two corners), or `polygon` (N points). `trigger_on` can be `crossing`, `presence`, or `dwell`.
 
 ---
 
-## Example output per event (JSON metadata)
+## Example lor.json (JSON metadata)
 
 ```json
+
 {
-  "event_id": "20250903_0001_CAM_D18",
-  "camera_id": "CAM_D18",
-  "start_ts": "2025-09-03T00:01:23.456Z",
-  "end_ts": "2025-09-03T00:01:26.891Z",
-  "duration_secs": 3.435,
-  "reason": "crossing",
-  "lor_type": "line",
-  "confidence": 0.87,
-  "clip_path": "out/blocks/CAM_D18/20250903_0001_CAM_D18.mp4",
-  "thumbnail": "out/blocks/CAM_D18/20250903_0001_CAM_D18.jpg",
-  "detections": [
-    {"frame": 12, "bbox": [x,y,w,h], "score": 0.86},
-    {"frame": 15, "bbox": [x,y,w,h], "score": 0.88}
+  "8": [
+    [
+      301,
+      280,
+      331,
+      470
+    ]
+  ],
+  "39": [
+    [
+      237,
+      225,
+      266,
+      483
+    ],
+    [
+      404,
+      380,
+      396,
+      437
+    ],
+    [
+      398,
+      445,
+      249,
+      444
+    ]
   ]
 }
 ```
-
+where "8", "39" are cams
 ---
 
 ## Architecture notes
